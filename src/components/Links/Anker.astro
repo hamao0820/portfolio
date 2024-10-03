@@ -7,12 +7,10 @@ interface Props {
 const { href, text } = Astro.props;
 ---
 
-<li>
-  <div>
-    <a href={href} target="_blank">{text}</a>
-    <img src={IconBlankImage.src} alt="外部リンク" />
-  </div>
-</li>
+<div>
+  <a href={href} target="_blank">{text}</a>
+  <img src={IconBlankImage.src} alt="外部リンク" />
+</div>
 
 <style>
   div {

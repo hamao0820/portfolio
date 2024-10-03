@@ -1,0 +1,40 @@
+---
+import Anker from "../Links/Anker.astro";
+
+interface Props {
+  title: string;
+  thumbnail: string;
+  url: string;
+}
+const { title, thumbnail, url } = Astro.props;
+---
+
+<div class="card">
+  <div class="title">{title}</div>
+  <div>
+    <img id="thumnail" src={thumbnail} alt=`${title}のサムネイル画像` />
+  </div>
+  <Anker href={url} text={title} />
+  <slot />
+</div>
+
+<style>
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  img {
+    width: 300px;
+    height: auto;
+  }
+  dialog > img {
+    width: 100%;
+    height: auto;
+  }
+</style>
