@@ -1,0 +1,28 @@
+---
+import IconBlankImage from "../../images/icon_blank.png";
+interface Props {
+  href: string;
+  text: string;
+}
+const { href, text } = Astro.props;
+---
+
+<li>
+  <div>
+    <a href={href} target="_blank">{text}</a>
+    <img src={IconBlankImage.src} alt="外部リンク" />
+  </div>
+</li>
+
+<style>
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  img {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.25rem;
+  }
+</style>
