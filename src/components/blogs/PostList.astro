@@ -9,7 +9,7 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<div class="content">
+<div>
   {
     posts.map((p) => (
       <div class="item">
@@ -25,10 +25,6 @@ const { posts } = Astro.props;
 </div>
 
 <style>
-  .content {
-    list-style: none;
-    padding: 0;
-  }
   /* 区切り線を入れる */
   .item {
     margin: 1rem 0;
