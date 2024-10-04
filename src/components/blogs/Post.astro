@@ -7,10 +7,12 @@ interface Props {
 const { title, url, createdAt } = Astro.props;
 ---
 
-<article>
-  <a href={url} class="title">{title}</a>
-  <p class="create-at">Written on: {createdAt}</p>
-</article>
+<div>
+  <a href={url} class="title">
+    <p>{title}</p>
+    <p class="create-at">Written on: {createdAt}</p>
+  </a>
+</div>
 
 <style>
   .title {

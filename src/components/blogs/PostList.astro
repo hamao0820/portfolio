@@ -1,0 +1,40 @@
+---
+import type { MarkdownInstance } from "astro";
+import type { Frontmatter } from "../../pages/blog.astro";
+import Post from "./Post.astro";
+interface Props {
+  posts: MarkdownInstance<Frontmatter>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul>
+  {
+    posts.map((p) => (
+      <li>
+        <Post title={p.frontmatter.title} url={p.url!} createdAt={p.frontmatter.createdAt} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  /* 区切り線を入れる */
+  li {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #ccc;
+    background-color: #f0f0f0;
+  }
+  li:nth-child(odd) {
+    background-color: #f8f8f8;
+  }
+  li:hover {
+    cursor: pointer;
+    background-color: #e0e0e0;
+  }
+</style>

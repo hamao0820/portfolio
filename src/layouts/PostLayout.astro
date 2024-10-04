@@ -1,12 +1,8 @@
 ---
 import Layout from "./Layout.astro";
+import type { Frontmatter } from "../pages/blog.astro";
 interface Props {
   frontmatter: Frontmatter;
-}
-
-export interface Frontmatter {
-  title: string;
-  createdAt: string;
 }
 
 const {
