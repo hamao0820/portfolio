@@ -4,18 +4,22 @@ import Links from "../components/index/Links.astro";
 import Logo from "../components/index/Logo.astro";
 import Table from "../components/index/Table.astro";
 import Profile from "../components/index/Profile.astro";
+import Section from "../components/index/Section.astro";
 ---
 
 <Layout title="hamao">
   <h1>
     <Logo /><span class="title">hamao</span>
   </h1>
-  <h2>プロフィール</h2>
-  <Table />
-  <h2>自己紹介</h2>
-  <Profile />
-  <h2>リンク</h2>
-  <Links />
+  <Section title="プロフィール">
+    <Table />
+  </Section>
+  <Section title="自己紹介">
+    <Profile />
+  </Section>
+  <Section title="リンク">
+    <Links />
+  </Section>
 </Layout>
 
 <style>
@@ -26,8 +30,5 @@ import Profile from "../components/index/Profile.astro";
   }
   .title {
     margin-left: 1rem;
-  }
-  h2 {
-    margin: 1rem;
   }
 </style>
