@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  createdAt: string;
+}
+const { title, url, createdAt } = Astro.props;
+---
+
+<article>
+  <a href={url} class="title">{title}</a>
+  <p class="create-at">Written on: {createdAt}</p>
+</article>
+
+<style>
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .create-at {
+    font-size: 0.8rem;
+    color: gray;
+  }
+</style>

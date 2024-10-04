@@ -1,0 +1,30 @@
+---
+import Layout from "./Layout.astro";
+interface Props {
+  frontmatter: Frontmatter;
+}
+
+export interface Frontmatter {
+  title: string;
+  createdAt: string;
+}
+
+const {
+  frontmatter: { title, createdAt },
+} = Astro.props;
+---
+
+<Layout title={title}>
+  <a href="/blog"> 一覧に戻る </a>
+  <h1>{title}</h1>
+  <slot />
+  <p class="created-at">Written on: {createdAt}</p>
+</Layout>
+
+<style>
+  .created-at {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: gray;
+  }
+</style>

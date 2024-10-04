@@ -1,7 +1,19 @@
 ---
+import type { MarkdownInstance } from "astro";
 import Layout from "../layouts/Layout.astro";
+import Post from "../components/Post/Post.astro";
+interface Frontmatter {
+  title: string;
+  createdAt: string;
+}
+const posts = await Astro.glob<MarkdownInstance<Frontmatter>>("./posts/*");
 ---
 
 <Layout title="blog">
   <h1>Blog</h1>
+  {
+    posts
+      .sort((a, b) => (a.frontmatter.createdAt < b.frontmatter.createdAt ? 1 : -1))
+      .map((p) => <Post title={p.frontmatter.title} url={p.url!} createdAt={p.frontmatter.createdAt} />)
+  }
 </Layout>
