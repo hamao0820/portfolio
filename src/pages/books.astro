@@ -1,7 +1,29 @@
 ---
+import Book from "../components/books/Book.astro";
 import Layout from "../layouts/Layout.astro";
+import data from "../data/books.json";
 ---
 
 <Layout title="books">
   <h1>Books</h1>
+  <div class="content">
+    {
+      data.map((book) => (
+        <div class="item">
+          <Book book={book} />
+        </div>
+      ))
+    }
+  </div>
 </Layout>
+
+<style>
+  h1 {
+    margin-left: 1rem;
+  }
+  .item {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+</style>

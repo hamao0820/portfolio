@@ -1,0 +1,61 @@
+---
+import Anker from "../Anker/Anker.astro";
+import type { Book } from "../../data/books.json";
+
+interface Props {
+  book: Book;
+}
+const {
+  book: { title, authors, tags, state, url, subtitle },
+} = Astro.props;
+---
+
+<div>
+  <div>
+    <div class="title">{title}</div>
+    {subtitle && <div class="subtitle">{subtitle}</div>}
+  </div>
+  <div class="authors">{authors.join(" ")}</div>
+  <div class="tags">
+    <span class="tag" data-state={state}>{state}</span>
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+  <Anker href={url} text="詳細を見る" />
+  <slot />
+</div>
+
+<style>
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .subtitle {
+    margin-left: 1rem;
+    color: gray;
+  }
+  .subtitle::before {
+    content: "〜";
+  }
+  .subtitle::after {
+    content: "〜";
+  }
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  .tag {
+    padding: 0.2rem 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+  }
+  [data-state="読了"] {
+    background-color: #effde7;
+  }
+  [data-state="読書中"] {
+    background-color: #fff8e1;
+  }
+  [data-state="積読"] {
+    background-color: #ffe8e9;
+  }
+</style>
