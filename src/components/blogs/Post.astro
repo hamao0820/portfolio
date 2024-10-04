@@ -2,22 +2,32 @@
 interface Props {
   title: string;
   url: string;
+  summary: string;
   createdAt: string;
 }
-const { title, url, createdAt } = Astro.props;
+const { title, url, createdAt, summary } = Astro.props;
 ---
 
 <div>
-  <a href={url} class="title">
-    <p>{title}</p>
-    <p class="create-at">Written on: {createdAt}</p>
+  <a href={url}>
+    <span class="create-at">{createdAt}</span>
+    <div class="title">{title}</div>
+    <div class="summary">{summary}</div>
   </a>
 </div>
 
 <style>
+  a {
+    text-decoration: none;
+    color: black;
+    width: 100%;
+  }
   .title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
+  }
+  .summary {
+    color: gray;
   }
   .create-at {
     font-size: 0.8rem;

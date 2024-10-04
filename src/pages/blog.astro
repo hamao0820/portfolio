@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import PostList from "../components/blogs/PostList.astro";
 export interface Frontmatter {
   title: string;
+  summary: string;
   createdAt: string;
 }
 const posts = await Astro.glob<MarkdownInstance<Frontmatter>>("./posts/*");
@@ -13,3 +14,9 @@ const posts = await Astro.glob<MarkdownInstance<Frontmatter>>("./posts/*");
   <h1>Blog</h1>
   <PostList posts={posts.sort((a, b) => (a.frontmatter.createdAt < b.frontmatter.createdAt ? 1 : -1))} />
 </Layout>
+
+<style>
+  h1 {
+    margin-left: 1rem;
+  }
+</style>

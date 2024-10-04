@@ -11,15 +11,23 @@ const {
 ---
 
 <Layout title={title}>
-  <a href="/blog"> 一覧に戻る </a>
   <h1>{title}</h1>
-  <slot />
-  <p class="created-at">Written on: {createdAt}</p>
+  <p class="created-at">{createdAt}</p>
+  <div class="content">
+    <slot />
+    <a href="/blog"> 一覧に戻る </a>
+  </div>
 </Layout>
 
 <style>
+  h1 {
+    margin-left: 1rem;
+  }
+  .content {
+    padding: 1rem;
+  }
   .created-at {
-    margin-top: 1rem;
+    margin-left: 1rem;
     font-size: 0.8rem;
     color: gray;
   }

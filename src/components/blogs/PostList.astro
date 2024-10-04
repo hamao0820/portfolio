@@ -9,32 +9,30 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul>
+<div class="content">
   {
     posts.map((p) => (
-      <li>
-        <Post title={p.frontmatter.title} url={p.url!} createdAt={p.frontmatter.createdAt} />
-      </li>
+      <div class="item">
+        <Post
+          title={p.frontmatter.title}
+          url={p.url!}
+          createdAt={p.frontmatter.createdAt}
+          summary={p.frontmatter.summary}
+        />
+      </div>
     ))
   }
-</ul>
+</div>
 
 <style>
-  ul {
+  .content {
     list-style: none;
     padding: 0;
   }
   /* 区切り線を入れる */
-  li {
-    padding: 1rem 0.5rem;
+  .item {
+    margin: 1rem 0;
+    padding: 1rem;
     border-bottom: 1px solid #ccc;
-    background-color: #f0f0f0;
-  }
-  li:nth-child(odd) {
-    background-color: #f8f8f8;
-  }
-  li:hover {
-    cursor: pointer;
-    background-color: #e0e0e0;
   }
 </style>
