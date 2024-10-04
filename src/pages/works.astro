@@ -9,21 +9,41 @@ import YtMusicSpeedNormalizer from "../images/works/yt-music-speed-normalizer.pn
 <Layout title="works">
   <h1>Works</h1>
   <div>
-    <Work title="hamaoの競プロメモ" thumbnail={AtcoderMemo.src} url="https://atcoder-memo.hamao.dev/">
-      <p>競技プログラミングのメモをまとめたサイトです。</p>
-      <p><a href="https://nextra.site/" target="_blank">Nextra</a>を使って開発しています。</p>
-      <p>工夫した点としては、URLに対して自動でOGP画像が生成されるようになっています。</p>
-    </Work>
-    <Work title="sortvis" thumbnail={Sortvis.src} url="https://github.com/hamao0820/sortvis">
-      <p>ソートアルゴリズムの可視化ツールです。</p>
-      <p>詳しくは<a href="https://zenn.dev/hamao/articles/3381417748e1a7" target="_blank">記事</a>をご覧ください。</p>
-    </Work>
-    <Work
-      title="yt-music-speed-normalizer"
-      url="https://chromewebstore.google.com/detail/yt-music-speed-normalizer/abaighcbljaoplemacfnfendgobcmkhn"
-      thumbnail={YtMusicSpeedNormalizer.src}
-    >
-      <p>YouTubeで音楽を再生するときに、自動で再生速度を標準に戻してくれるChrome拡張です。</p>
-    </Work>
+    <div class="item">
+      <Work title="hamaoの競プロメモ" thumbnail={AtcoderMemo.src} url="https://atcoder-memo.hamao.dev/">
+        <p>競技プログラミングのメモをまとめたサイトです。</p>
+        <p><a href="https://nextra.site/" target="_blank">Nextra</a>を使って開発しています。</p>
+        <p>工夫した点としては、URLに対して自動でOGP画像が生成されるようになっています。</p>
+      </Work>
+    </div>
+    <div class="item">
+      <Work title="sortvis" thumbnail={Sortvis.src} url="https://github.com/hamao0820/sortvis">
+        <p>ソートアルゴリズムの可視化ツールです。</p>
+        <p>詳しくは<a href="https://zenn.dev/hamao/articles/3381417748e1a7" target="_blank">記事</a>をご覧ください。</p>
+      </Work>
+    </div>
+    <div class="item">
+      <Work
+        title="yt-music-speed-normalizer"
+        url="https://chromewebstore.google.com/detail/yt-music-speed-normalizer/abaighcbljaoplemacfnfendgobcmkhn"
+        thumbnail={YtMusicSpeedNormalizer.src}
+      >
+        <p>YouTubeで音楽を再生するときに、自動で再生速度を標準に戻してくれるChrome拡張です。</p>
+      </Work>
+    </div>
   </div>
 </Layout>
+
+<style>
+  h1 {
+    margin-left: 1rem;
+  }
+  .item {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  .item > p {
+    margin-top: 1rem;
+  }
+</style>

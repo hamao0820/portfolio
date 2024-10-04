@@ -9,7 +9,7 @@ interface Props {
 const { title, thumbnail, url } = Astro.props;
 ---
 
-<div class="card">
+<div>
   <div class="title">{title}</div>
   <div>
     <img id="thumnail" src={thumbnail} alt=`${title}のサムネイル画像` />
@@ -23,18 +23,9 @@ const { title, thumbnail, url } = Astro.props;
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .card {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-  }
   img {
     width: 300px;
     height: auto;
-  }
-  dialog > img {
-    width: 100%;
-    height: auto;
+    margin: 0.5rem 0;
   }
 </style>
