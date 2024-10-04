@@ -1,41 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Links from "../components/Links/Links.astro";
+import Logo from "../components/Logo/Logo.astro";
+import Table from "../components/Table/Table.astro";
+import Profile from "../components/Profile/Profile.astro";
 ---
 
 <Layout title="hamao">
-  <h1>hamao</h1>
-  <h2>About</h2>
-  <div>
-    <table>
-      <tr>
-        <th>名前 </th>
-        <td>hamao/はまお</td>
-      </tr>
-      <tr>
-        <th>生年月日</th>
-        <td>2002/08/20</td>
-      </tr>
-      <tr>
-        <th>年齢</th>
-        <td>22</td>
-      </tr>
-      <tr>
-        <th>職業</th>
-        <td>学生</td>
-      </tr>
-      <tr>
-        <th>所属</th>
-        <td>名古屋大学理学部数理学科 4年</td>
-      </tr>
-    </table>
-  </div>
+  <h1>
+    <Logo /><span class="title">hamao</span>
+  </h1>
+  <h2>プロフィール</h2>
+  <Table />
   <h2>自己紹介</h2>
-  <div>
-    <p>はまおです。よろしくお願いします。</p>
-    <p>プログラミングは大学に入って始めました。</p>
-    <p>来年からは名古屋大学大学院情報学研究科数理情報学専攻に所属します。</p>
-  </div>
+  <Profile />
   <h2>リンク</h2>
   <Links />
 </Layout>
+
+<style>
+  h1 {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+  }
+  .title {
+    margin-left: 1rem;
+  }
+  h2 {
+    margin: 1rem;
+  }
+</style>
