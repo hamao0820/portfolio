@@ -2,13 +2,29 @@
 import Book from "../components/books/Book.astro";
 import Layout from "../layouts/Layout.astro";
 import data from "../data/books.json";
+
+type Maybe<T> = T | null;
+const state = Astro.url.searchParams.get("state") as Maybe<string>;
+
+const filterState = (v: string) => !state || state === v;
+
+export const prerender = false;
 ---
 
 <Layout title="books">
   <h1>Books</h1>
   <div class="content">
+    <div class="tags">
+      <div>状態{" : "}</div>
+      {
+        ["読了", "読書中", "積読"].map((v) => (
+          <input type="radio" name="state" value={v} class="state" id={v} checked={state && state === v}/>
+          <label for={v}  class="state">{v}</label>
+        ))
+      }
+    </div>
     {
-      data.map((book) => (
+      data.filter(book => filterState(book.state)).map((book) => (
         <div class="item">
           <Book book={book} />
         </div>
@@ -17,9 +33,53 @@ import data from "../data/books.json";
   </div>
 </Layout>
 
+<script>
+  const $inputs = document.getElementsByName("state") as NodeListOf<HTMLInputElement>;
+  const $checked: HTMLInputElement | undefined = [...$inputs].find((input) => input.checked);
+  $inputs.forEach((input) => {
+    input.addEventListener("click", (e) => {
+      const target = e.target as HTMLInputElement;
+      const currentURL = new URL(window.location.href);
+      if ($checked && $checked.value === target.value) {
+        currentURL.searchParams.delete("state");
+      } else {
+        currentURL.searchParams.set("state", target.value);
+      }
+      window.location.href = currentURL.toString();
+    })
+  })
+</script>
+
 <style>
   h1 {
     margin-left: 1rem;
+  }
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+  }
+  input {
+    display: none;
+  }
+  .state {
+    padding: 0.2rem 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+  }
+  input[value="読了"]:checked + label {
+    background-color: #effde7;
+  }
+  input[value="読書中"]:checked + label {
+    background-color: #fff8e1;
+  }
+  input[value="積読"]:checked + label {
+    background-color: #ffe8e9;
+  }
+  label {
+    cursor: pointer;
   }
   .item {
     padding: 1rem;
