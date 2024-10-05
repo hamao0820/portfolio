@@ -41,7 +41,7 @@ const main = async () => {
   }
   const date = new Date();
   const mdPath = path.join(MD_PATH, mdName(title, date));
-  exec(`echo '${blogTemplate(title, date)}' > ${mdPath}`, (err, stdout, stderr) => {
+  exec(`echo '${blogTemplate(title, date)}' > ${mdPath}`, (err, _stdout, _stderr) => {
     if (err) {
       console.error(err);
       process.exit(1);
