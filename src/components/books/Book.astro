@@ -32,6 +32,10 @@ const {
       const data = target.dataset.state;
       if (!data) return;
       const currentURL = new URL(window.location.href);
+      const state = currentURL.searchParams.get("state");
+      if (state && state === data) {
+        return;
+      }
       currentURL.searchParams.set("state", data);
       window.location.href = currentURL.toString();
     });
