@@ -17,12 +17,26 @@ const {
   </div>
   <div class="authors">{authors.join(" ")}</div>
   <div class="tags">
-    <span class="tag" data-state={state}>{state}</span>
+    <span class:list={["tag", "state"]} data-state={state}>{state}</span>
     {tags.map((tag) => <span class="tag">{tag}</span>)}
   </div>
   <Anker href={url} text="詳細を見る" />
   <slot />
 </div>
+
+<script>
+  const $states = document.querySelectorAll(".state");
+  $states.forEach(($state) => {
+    const target = $state as HTMLInputElement;
+    target.addEventListener("click", () => {
+      const data = target.dataset.state;
+      if (!data) return;
+      const currentURL = new URL(window.location.href);
+      currentURL.searchParams.set("state", data);
+      window.location.href = currentURL.toString();
+    });
+  });
+</script>
 
 <style>
   .title {
@@ -48,6 +62,9 @@ const {
     padding: 0.2rem 0.5rem;
     background-color: #f0f0f0;
     border-radius: 0.5rem;
+  }
+  .state {
+    cursor: pointer;
   }
   [data-state="読了"] {
     background-color: #effde7;
