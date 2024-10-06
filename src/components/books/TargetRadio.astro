@@ -1,0 +1,64 @@
+---
+import "../../data/books.json";
+
+interface Props {
+  target: string | null;
+  tags: string[];
+}
+
+const { target, tags } = Astro.props;
+---
+
+<div class="tags">
+  <div>タグ{" : "}</div>
+  {
+    tags.map((v) => (
+      <>
+        <input type="radio" name="tag" value={v} class="tag" id={v} checked={target && target === v} />
+        <label for={v} class="tag">
+          {v}
+        </label>
+      </>
+    ))
+  }
+</div>
+
+<script>
+  const $inputs = document.getElementsByName("tag") as NodeListOf<HTMLInputElement>;
+  const $checked: HTMLInputElement | undefined = [...$inputs].find((input) => input.checked);
+  $inputs.forEach((input) => {
+    input.addEventListener("click", (e) => {
+      const target = e.target as HTMLInputElement;
+      const currentURL = new URL(window.location.href);
+      if ($checked && $checked.value === target.value) {
+        currentURL.searchParams.delete("tag");
+      } else {
+        currentURL.searchParams.set("tag", target.value);
+      }
+      window.location.href = currentURL.toString();
+    });
+  });
+</script>
+
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+  }
+  .tag {
+    padding: 0.2rem 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  input {
+    display: none;
+  }
+  input:checked + label {
+    background-color: #e1f8ff;
+  }
+</style>

@@ -1,4 +1,4 @@
-type State = "読書中" | "読了" | "積読";
+export type State = "読書中" | "読了" | "積読";
 export interface Book {
   title: string;
   subtitle?: string;

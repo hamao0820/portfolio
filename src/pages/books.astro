@@ -2,17 +2,32 @@
 import Book from "../components/books/Book.astro";
 import Layout from "../layouts/Layout.astro";
 import data from "../data/books.json";
+import StateRadio from "../components/books/StateRadio.astro";
+import type { State } from "../data/books.json";
+import TargetRadio from "../components/books/TargetRadio.astro";
+
+const state = Astro.url.searchParams.get("state") as State | null;
+const tag = Astro.url.searchParams.get("tag") as string | null;
+
+const filterState = (v: string) => !state || state === v;
+const filterTags = (vs: string[]) => !tag || vs.includes(tag);
+
+export const prerender = false;
 ---
 
 <Layout title="books">
   <h1>Books</h1>
   <div class="content">
+    <StateRadio state={state} />
+    <TargetRadio target={tag} tags={[...new Set(data.flatMap((book) => book.tags))]} />
     {
-      data.map((book) => (
-        <div class="item">
-          <Book book={book} />
-        </div>
-      ))
+      data
+        .filter((book) => filterState(book.state) && filterTags(book.tags))
+        .map((book) => (
+          <div class="item">
+            <Book book={book} />
+          </div>
+        ))
     }
   </div>
 </Layout>
