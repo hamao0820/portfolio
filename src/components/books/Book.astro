@@ -34,9 +34,10 @@ const {
       const currentURL = new URL(window.location.href);
       const state = currentURL.searchParams.get("state");
       if (state && state === data) {
-        return;
+        currentURL.searchParams.delete("state");
+      } else {
+        currentURL.searchParams.set("state", data);
       }
-      currentURL.searchParams.set("state", data);
       window.location.href = currentURL.toString();
     });
   });
