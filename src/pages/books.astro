@@ -6,8 +6,10 @@ import StateRadio from "../components/books/StateRadio.astro";
 import type { State } from "../data/books.json";
 
 const state = Astro.url.searchParams.get("state") as State | null;
+const tag = Astro.url.searchParams.get("tag") as string | null;
 
 const filterState = (v: string) => !state || state === v;
+const filterTags = (vs: string[]) => !tag || vs.includes(tag);
 
 export const prerender = false;
 ---
@@ -18,7 +20,7 @@ export const prerender = false;
     <StateRadio state={state} />
     {
       data
-        .filter((book) => filterState(book.state))
+        .filter((book) => filterState(book.state) && filterTags(book.tags))
         .map((book) => (
           <div class="item">
             <Book book={book} />

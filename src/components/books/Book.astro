@@ -18,29 +18,45 @@ const {
   <div class="authors">{authors.join(" ")}</div>
   <div class="tags">
     <span class:list={["tag", "state"]} data-state={state}>{state}</span>
-    {tags.map((tag) => <span class="tag">{tag}</span>)}
+    {
+      tags.map((tag) => (
+        <span class="tag" data-tag={tag}>
+          {tag}
+        </span>
+      ))
+    }
   </div>
   <Anker href={url} text="詳細を見る" />
   <slot />
 </div>
 
 <script>
-  const $states = document.querySelectorAll(".state");
-  $states.forEach(($state) => {
-    const target = $state as HTMLInputElement;
-    target.addEventListener("click", () => {
-      const data = target.dataset.state;
+  const onClick =
+    (key: string): ((e: Event) => void) =>
+    (e) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const data = target.dataset[key];
       if (!data) return;
       const currentURL = new URL(window.location.href);
-      const state = currentURL.searchParams.get("state");
-      if (state && state === data) {
-        currentURL.searchParams.delete("state");
+      const value = currentURL.searchParams.get(key);
+      console.log(value, data);
+      if (value && value === data) {
+        currentURL.searchParams.delete(key);
       } else {
-        currentURL.searchParams.set("state", data);
+        currentURL.searchParams.set(key, data);
       }
       window.location.href = currentURL.toString();
+    };
+  const addClickEventListener = (selector: string, key: string) => {
+    const $elements = document.querySelectorAll(selector);
+    $elements.forEach(($element) => {
+      $element.addEventListener("click", onClick(key));
     });
-  });
+  };
+
+  addClickEventListener(".state", "state");
+  addClickEventListener(".tag:not(.state)", "tag");
 </script>
 
 <style>
@@ -67,8 +83,6 @@ const {
     padding: 0.2rem 0.5rem;
     background-color: #f0f0f0;
     border-radius: 0.5rem;
-  }
-  .state {
     cursor: pointer;
   }
   [data-state="読了"] {
