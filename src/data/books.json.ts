@@ -462,10 +462,11 @@ const books: Book[] = [
   },
 ];
 
-console.log(
-  JSON.stringify(
-    books.map((book) => ({ ...book, tags: book.tags.sort() })).sort((a, b) => (a.tags.join() < b.tags.join() ? -1 : 1)),
-  ),
-);
+const sortedBooks = books
+  .map((book) => ({ ...book, tags: book.tags.toSorted() }))
+  .toSorted((a, b) => (a.title < b.title ? -1 : 1))
+  .toSorted((a, b) => (a.tags.join() < b.tags.join() ? -1 : 1))
 
-export default books;
+const uniqueTags = [...new Set(books.flatMap((book) => book.tags))].toSorted();
+
+export { sortedBooks as books, uniqueTags as tags };
