@@ -646,6 +646,14 @@ const books: Book[] = [
     state: "積読",
     url: "https://www.kyoritsu-pub.co.jp/book/b10044851.html",
   },
+  {
+    title: "パズルの算法",
+    subtitle: "手とコンピュータでのパズルの味わい方",
+    authors: ["上原　隆平"],
+    tags: ["数学", "最適化", "アルゴリズム"],
+    state: "積読",
+    url: "https://www.nippyo.co.jp/shop/book/9378.html",
+  },
 ];
 
 const sortedBooks = books
