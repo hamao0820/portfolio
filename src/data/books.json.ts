@@ -654,6 +654,13 @@ const books: Book[] = [
     state: "積読",
     url: "https://www.nippyo.co.jp/shop/book/9378.html",
   },
+  {
+    title: "作って学ぶ　Next.js/React　Webサイト構築",
+    authors: ["エビスコム"],
+    tags: ["Kindle", "プログラミング"],
+    state: "積読",
+    url: "https://book.mynavi.jp/ec/products/detail/id=130848",
+  },
 ];
 
 const sortedBooks = books
