@@ -661,6 +661,14 @@ const books: Book[] = [
     state: "積読",
     url: "https://book.mynavi.jp/ec/products/detail/id=130848",
   },
+  {
+    title: "ドメイン駆動設計入門",
+    subtitle: "ボトムアップでわかる！ドメイン駆動設計の基本",
+    authors: ["成瀬 允宣"],
+    tags: ["プログラミング"],
+    state: "読書中",
+    url: "https://www.shoeisha.co.jp/book/detail/9784798150727",
+  },
 ];
 
 const sortedBooks = books
