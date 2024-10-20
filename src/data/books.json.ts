@@ -666,7 +666,7 @@ const books: Book[] = [
     subtitle: "ボトムアップでわかる！ドメイン駆動設計の基本",
     authors: ["成瀬 允宣"],
     tags: ["プログラミング"],
-    state: "読書中",
+    state: "読了",
     url: "https://www.shoeisha.co.jp/book/detail/9784798150727",
   },
 ];
